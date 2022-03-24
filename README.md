@@ -18,9 +18,14 @@ After a net usage the site is blocked with this page.
 
 ![block](https://user-images.githubusercontent.com/83026338/159984553-e9cb232e-6e77-4404-875a-1f3bfb141fe3.PNG)
 
+## Editing
+### (Feature of Editing time and adding more sites is under development)
+Even then if you want to edit then in background.js there is an object called initialDates, edit/Add in the same schema and then just reload the extension.
+
+
 ## Improvement & Ideas 
-- Add a feature to edit the time.
-- Add a feature to add more websites.
+- Add a feature to edit the time (Base is already created).
+- Add a feature to add more websites (Base is already created).
 - Improve the design.
 - Improve the logic to reset after a day.
 - Add logic to block some websites at certain time of day.
