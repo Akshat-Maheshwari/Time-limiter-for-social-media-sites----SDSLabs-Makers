@@ -1,0 +1,21 @@
+.time_limiter{
+    padding:20px 30px;
+    background-color: beige;
+    width:170px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.title{
+    font-size: 20px;
+    margin:10px;
+}
+.totalTime{
+    font-size: 40px;
+}
+.siteBox{
+    display: flex;
+    gap:10px;
+    margin:10px;
+}

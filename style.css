@@ -1,0 +1,20 @@
+.blockPage{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    gap: 50px;
+}
+.blockPage h1{
+    font-size: 35px;
+    font-family: monospace;
+}
+.blockPage p{
+    font-size: 20px;
+    font-family: monospace;
+}
+.blockPage .memeImg{
+    height: 300px;
+    width: 500px;
+}
