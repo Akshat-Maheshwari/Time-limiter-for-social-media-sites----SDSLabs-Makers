@@ -38,16 +38,23 @@ chrome.runtime.onInstalled.addListener(async () => {
     chrome.storage.sync.get(["WebsitesData"],(data)=>{
         if(!Object.keys(data).length){
             chrome.storage.sync.set({WebsitesData:initialData});   
-        }else chrome.storage.sync.set({mutableWebsitesData:data.WebsitesData});
+        }else{   
+           chrome.storage.sync.set({mutableWebsitesData:data.WebsitesData}); 
+        } 
     });
     //////////////SET TOTAL TIME HERE
-    chrome.storage.sync.set({totalTime:
-        {
-            hours:0,
-            minutes:0,
-            seconds:25
+    chrome.storage.sync.get(["totalTime"],(data)=>{
+        if(!Object.keys(data).length){
+            chrome.storage.sync.set({totalTime:
+                {
+                    hours:0,
+                    minutes:0,
+                    seconds:25
+                }
+            });   
         }
     });
+    
     ///////////////
 });
 
@@ -91,6 +98,7 @@ function mainLogic(){
     //////////////////////////////
     endTimer();
     chrome.storage.sync.get(['mutableWebsitesData'],(websitesData)=>{
+        console.log(websitesData)
         websites=websitesData.mutableWebsitesData;
         chrome.tabs.query({active:true, currentWindow:true},(tabs)=>{
             url= tabs[0].url;
@@ -123,14 +131,22 @@ function startTimer(){
             seconds--;
             totalTime--;
             if(seconds<=0 && minutes<=0 && hours<=0){
-                chrome.tabs.sendMessage(tabId, "block");  
+                chrome.tabs.sendMessage(tabId, "block",(response)=>{
+                    console.log(response)
+                });  
                 clearInterval(timer);  
                 seconds=0;
                 minutes=0;
                 hours=0;
             }
         }else{
-            chrome.tabs.sendMessage(tabId, "block");
+            chrome.tabs.sendMessage(tabId, "block",(response)=>{
+                console.log(response)
+                clearInterval(timer);  
+                seconds=0;
+                minutes=0;
+                hours=0;
+            });
         }
          
     }
@@ -147,3 +163,12 @@ function endTimer(){
     clearInterval(timer);
     chrome.storage.sync.set({mutableWebsitesData:websites});
 }
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if(request === "refresh"){
+            console.log("refresh");
+            chrome.runtime.reload();
+        }
+    }
+);

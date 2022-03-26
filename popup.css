@@ -1,6 +1,6 @@
 .time_limiter{
     padding:20px 30px;
-    background-color: beige;
+    background-color: aliceblue;
     width:170px;
     display:flex;
     flex-direction: column;
@@ -13,9 +13,21 @@
 }
 .totalTime{
     font-size: 40px;
+    display:flex;
 }
 .siteBox{
     display: flex;
     gap:10px;
     margin:10px;
+}
+.siteTime{
+    display:flex;
+}
+.saveBtn{
+    cursor:pointer;
+    border:1px solid grey;
+    padding:10px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    display: none;
 }
